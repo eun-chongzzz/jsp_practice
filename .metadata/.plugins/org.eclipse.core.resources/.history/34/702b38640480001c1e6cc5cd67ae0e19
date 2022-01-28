@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%!
+		public int total = 0;
+	
+	%>
+	<%
+	int rN = (int)(Math.random() * 8) + 1;
+	
+	out.println("이번에 나온 구구단은"+ rN + "단입니다." );
+	for(int j=1; j<10; j++){
+		out.println(rN + " * " + j + " = " + rN * j +"<br/>");
+	}
+	
+	
+	%>
+</body>
+</html>
