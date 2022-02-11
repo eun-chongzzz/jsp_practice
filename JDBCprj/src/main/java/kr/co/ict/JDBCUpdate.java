@@ -62,7 +62,7 @@ public class JDBCUpdate {
 			// 		WHERE uid='유저입력아이디';
 			
 			// 5. 쿼리문 발송 후 변경내역이 DB에 반영되었는지 체크
-			stmt.executeUpdate("UPDATE userinfo SET upw='" + upw +
+			 stmt.executeUpdate("UPDATE userinfo SET upw='" + upw +
 												"', uname='" + uname +
 												"', uemail='" + uemail +
 												"' WHERE uid='" + uid + "'");
