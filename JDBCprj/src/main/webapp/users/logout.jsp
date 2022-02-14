@@ -7,9 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="req_login_reslut.jsp" method="get">
-	<input type="text" name="id" placeholder="아이디"/><br/>
-	<input type="text" name="password" placeholder="비밀번호"/><br/>
-	</form>
+<%
+	// 세션이 있건 없건 세션 삭제 후 form으로 보내주면 됨
+	session.invalidate();
+	
+	response.sendRedirect("login_form.jsp");
+%>
 </body>
 </html>
