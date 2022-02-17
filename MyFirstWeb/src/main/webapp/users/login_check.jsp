@@ -55,9 +55,6 @@
 		// 5. 만약 웰컴페이지도 만들 여력이 되신다면
 		// 	  가입 이후 리다이렉트로 넘겨서
 		//	  이름(아이디) 님 로그인을 환영합니다 라는 문장이 뜨는 login_welcome.jsp까지 구현해주세요.
-	
-	
-	
 	} catch(Exception e){
 		e.printStackTrace();
 	} finally {
