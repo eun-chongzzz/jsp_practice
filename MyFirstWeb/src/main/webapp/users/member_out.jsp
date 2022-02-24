@@ -1,3 +1,4 @@
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -19,6 +20,7 @@
 		response.sendRedirect("login_form.jsp");
 	}
 	
+	/*
 	// 1. DB연결용 변수선언
 	String dbType = "com.mysql.cj.jdbc.Driver";
 	String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
@@ -51,7 +53,12 @@
 		// 삭제가 성공했건 실패했건 탈퇴에 접근한 자체로 세션 파기
 		session.invalidate();
 	}
-
+	*/
+		// 삭제로직 구현
+		UserDAO dao = new UserDAO();
+		dao.deleteUser(sId);
+		// 삭제가 성공했건 실패했건 탈퇴에 접근한 자체로 세션 파기
+		session.invalidate();
 %>    
 <!DOCTYPE html>
 <html>
