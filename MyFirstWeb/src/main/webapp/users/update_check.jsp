@@ -1,3 +1,4 @@
+<%@page import="kr.co.ict.UserDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
@@ -11,6 +12,8 @@
 		String email = request.getParameter("femail");
 	// 2. session에 저장된 아이디를 변수로 저장해주세요.
 		String sId = (String)session.getAttribute("session_id");
+	
+	/*
 	// 3. DB접속정보 변수로 관리
 		String dbType = "com.mysql.cj.jdbc.Driver";
 		String dbUrl = "jdbc:mysql://localhost:3306/jdbcprac1";
@@ -38,6 +41,15 @@
 	} finally {
 		
 	}
+	*/
+	
+	// 위쪽 3~6코드를 DAO로 대체해서 처리해주세요.
+	// DAO 생성
+	UserDAO dao = new UserDAO();
+	
+	// update로직 호출
+	dao.updateCheck(sId, pw, name, email);
+	
 %>    
 <!DOCTYPE html>
 <html>
