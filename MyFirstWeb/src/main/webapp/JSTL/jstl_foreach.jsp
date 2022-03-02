@@ -40,5 +40,28 @@
 		</c:forEach>
 		<hr>
 	</c:forEach>
+	
+	<hr>
+	<h1>숫자가 아닌 요소를 반복하는 JSTL</h1>
+	<%-- arr변수 내에 과일 5개이름을 배열로 저장하는 구문 --%>
+	<c:set var="arr" value='<%= new String[] {"사과", "딸기", "망고", "바나나", "포도"} %>'/>
+	<%-- c:forEach는 향상된 for문처럼 쓸 수도 있습니다.--%>
+	<c:forEach var="i" items="${arr }">
+		${i } &nbsp;
+	</c:forEach>
+	<%-- 
+		String[] arr = {"사과", "딸기", "망고", "바나나", "포도"};
+		for(String i : arr){
+			out.println(i + "&nbsp;");
+		}
+	 --%>
+	 
+	 <!-- int 배열에 10, 20, 30, 40, 50을 넣어주시고
+	 forEach문을 이용해 화면에 출력해주세요. 변수명은 마음대로 만들어주셔도 됩니다. -->
+	 <c:set var="num" value= '<%= new Integer[] {10, 20, 30, 40, 50} %>'/>
+	 <c:forEach var="a" items="${num }">
+		${a } &nbsp;
+	</c:forEach>
 </body>
 </html>
+
