@@ -1,6 +1,8 @@
 package kr.co.ict.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +36,7 @@ public class ServletCustom extends HttpServlet {
 	 * @see Servlet#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		System.out.println("/ServletCustom 접속시 생성된 객체는 서버 종료로 인해 파기됩니다.");
 	}
 
 	/**
@@ -53,15 +55,45 @@ public class ServletCustom extends HttpServlet {
 		// "jpa"라는 이름으로 들어온 요소를 콘솔에 찍도록 추가해주세요
 		String jpa = request.getParameter("jpa");
 		System.out.println(jpa);
-		
+		// 리다이렉트 방식은 페이지만 이동하고 데이터는 같이 전송하지 않습니다.
+		// response.sendRedirect("http://localhost:8181/MyFirstWeb/servletForm/customGetResult.jsp");
+		// 포워딩을 하기 전 request에 setAttribute()를 이용해 데이터를 저장합니다.
+		request.setAttribute("jsp", jsp);
+		request.setAttribute("boot", boot);
+		request.setAttribute("jpa", jpa);
+		// 상단 변수를 함께 전달하기 위해 forward를 대신 사용합니다.
+		// 목적지 주소는 localhost:포트번호/프로젝트명/이후경로
+		RequestDispatcher dp = request.getRequestDispatcher("/servletForm/customGetResult.jsp");
+		dp.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// dopost는 현재까지 배운 내용만 놓고 봤을때는 form에서 post방식으로 제출될 때 호출됩니다.
+		System.out.println("/Servlet 주소 post방식으로 접속함");
+		// servletForm 내부에 있던 ~~~~Form.jsp의 목적지는 그대로 두시고
+		// 전송방식만 post로 바꿔서 데이터를 날려주시고
+		// 받아서 처리해주세요.
+		// 대신 post방식으로 전송됨을 구분하기 위해서
+		// System.out.println("post방식:" 변수명);
+		request.setCharacterEncoding("utf-8");
+
+		String jsp1 = request.getParameter("jsp");
+		String boot1 = request.getParameter("boot");
+		String jpa1 = request.getParameter("jpa");
+		System.out.println("post방식 : " + jsp1 + ", " + boot1 + ", " + jpa1);
+		// 아래 redirect방식 대신, customPostResult.jsp를 생성해주신 다음
+		// post방식 처리시 포워딩으로 jsp, boot, jpa 변수가 화면에 표출되도록 해주세요.
+		//response.sendRedirect("http://localhost:8181/MyFirstWeb/servletForm/customPostResult.jsp");
+		// 1. request.setAttribute()를 이용해 포워딩 목적지로 보낼 뎅터 바인딩(저장)
+		request.setAttribute("jsp", jsp1);
+		request.setAttribute("boot", boot1);
+		request.setAttribute("jpa", jpa1);
+		// 2. 목적지 설정 및 RequestDispatcher 생성
+		RequestDispatcher dp = request.getRequestDispatcher("/servletForm/customPostResult.jsp");
+		dp.forward(request, response);
 	}
 
 }
