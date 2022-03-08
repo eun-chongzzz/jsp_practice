@@ -9,38 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${boardList }
 	<hr>
 	<!-- 출력방법 : 인덱싱이나 c:forEach를 이용해서 하나하나 꺼내준 다음
 	.변수명을 적으면 출력됩니다. -->
-	0번째 요소 : ${boardList[0]}<br>
-	1번째 요소 : ${boardList[1]}<br>
-	2번째 요소 : ${boardList[2]}<br>
-	<hr>
-
-	전체 데이터 : ${boardList[0] }<br>
-	글번호 : ${boardList[0].board_num}<br>
-	글제목 : ${boardList[0].title }
-	<hr>
-	<table class="table table-hover">
-		<tr>
-			<th>글 번호</th>
-			<th>글 제목</th>
-			<th>글쓴이</th>
-			<th>쓴날짜</th>
-			<th>최종수정날짜</th>
-			<th>조회수</th>
-		</tr>
-		<tr>
-			<td>${boardList[0].board_num}</td>
-			<td>${boardList[0].title}</td>
-			<td>${boardList[0].writer}</td>
-			<td>${boardList[0].bDate}</td>
-			<td>${boardList[0].mDate}</td>
-			<td>${boardList[0].hit}</td>
-		</tr>
-	</table>
-	<hr>
 	<table class="table table-hover">
 		<tr>
 			<th>글 번호</th>
@@ -53,7 +24,7 @@
 		<c:forEach var="board" items="${boardList }">
 			<tr>
 				<td>${board.board_num}</td>
-				<td>${board.title}</td>
+				<td><a href="http://localhost:8181/MyFirstWeb/BoardDetail?board_num=${board.board_num }">${board.title}</a></td>
 				<td>${board.writer}</td>
 				<td>${board.bDate}</td>
 				<td>${board.mDate}</td>
