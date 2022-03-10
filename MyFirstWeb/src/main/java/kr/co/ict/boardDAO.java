@@ -166,10 +166,60 @@ public class boardDAO {
 					e.printStackTrace();
 				}
 			}
-			
 			return board; 
-		
 	}
 	
+	// deleteBoard 메서드를 만들어서 삭제처리가 되게 만들어주시고
+	// 서블릿에서 해당 메서드를 호출해 실제로 삭제버튼을 누르면 DB에서 해당번호글이 삭제되게 해주세요.
+	public void deleteBoard(int boardNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			String sql = "DELETE FROM boardTbl WHERE board_num = ?";
+			pstmt = con.prepareStatement(sql);
+		
+			pstmt.setInt(1, boardNum);
+			
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
+	public void updateBoard(String title, String content, int boardNum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			String sql = "UPDATE boardTbl SET title=?, content=?, mdate=now() WHERE board_num=?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, boardNum);
+		
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+				pstmt.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
