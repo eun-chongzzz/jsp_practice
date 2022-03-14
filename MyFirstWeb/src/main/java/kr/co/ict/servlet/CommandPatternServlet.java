@@ -30,6 +30,15 @@ public class CommandPatternServlet extends HttpServlet {
 		// .test 앞에 들어오는 문자가 뭔지 감지해야 사용자의 요청을 파악할 수 있음.
 		String uri = request.getRequestURI();
 		System.out.println(uri);
+		if(uri.equals("/MyFirstWeb/main.test")) {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/");
+		}else if(uri.equals("/MyFirstWeb/board.test")) {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/boardList");
+		}else if(uri.equals("/MyFirstWeb/login.test")) {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/users/login_form.jsp");
+		}else {
+			response.sendRedirect("http://localhost:8181/MyFirstWeb/");
+		}
 	}
 
 	/**
