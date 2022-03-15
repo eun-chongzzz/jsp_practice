@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.cj.jdbc.ha.BestResponseTimeBalanceStrategy;
 
+import kr.co.ict.servlet.service.BoardDeleteService;
 import kr.co.ict.servlet.service.BoardDetailService;
+import kr.co.ict.servlet.service.BoardInsertService;
 import kr.co.ict.servlet.service.BoardListService;
+import kr.co.ict.servlet.service.BoardUpdateFormService;
+import kr.co.ict.servlet.service.BoardUpdateService;
 import kr.co.ict.servlet.service.IBoardService;
 
 /**
@@ -66,8 +70,30 @@ public class FrontController extends HttpServlet {
 			sv = new BoardDetailService();
 			sv.execute(request, response);
 			ui = "/board/boarddetail.jsp";
-			System.out.println("Detail 접속됨");
-		} else {
+		} else if(uri.equals("/MyFirstWeb/insertForm.do")) {
+			// BoardInsertFormServlet을 참조해서 완성해주세요.
+			ui = "/board/boardform.jsp";
+		} else if(uri.equals("/MyFirstWeb/boardInsert.do")) {
+			sv = new BoardInsertService();
+			sv.execute(request, response);
+			ui = "/boardList.do";
+		} else if(uri.equals("/MyFirstWeb/boardDelete.do")) {
+			// 위 패턴으로 BoardDeleteServlet의 기능을 BoardDeleteService로 이전하고 호출해주세요.
+			sv = new BoardDeleteService();
+			sv.execute(request, response);
+			ui = "/boardList.do";
+		} else if(uri.equals("/MyFirstWeb/boardUpdateForm.do")) {
+			// 1. 폼으로 보내기
+			sv = new BoardUpdateFormService();
+			sv.execute(request, response);
+			ui = "/board/boardUpdateForm.jsp";
+		} else if(uri.equals("/MyFirstWeb/boardUpdate.do")) {
+			// 2. 서비스 생성 -> 3. 실제 수정로직 실행 -> 4. .jsp파일도 마저 고쳐놓기
+			sv = new BoardUpdateService();
+			sv.execute(request, response);
+			ui = "/boardDetail.do?board_num=" + request.getParameter("board_num");
+		}
+		else {
 			// 그러면 정해진 주소 이외의 주소로 접속하지 않았을때 메인페이지로 보내주는 포워딩 구문을 작성해주세요.
 			ui  = "/";
 		}

@@ -24,7 +24,7 @@
 		<c:forEach var="board" items="${boardList }">
 			<tr>
 				<td>${board.board_num}</td>
-				<td><a href="http://localhost:8181/MyFirstWeb/BoardDetail?board_num=${board.board_num }">${board.title}</a></td>
+				<td><a href="http://localhost:8181/MyFirstWeb/boardDetail.do?board_num=${board.board_num }">${board.title}</a></td>
 				<td>${board.writer}</td>
 				<td>${board.bDate}</td>
 				<td>${board.mDate}</td>
@@ -32,6 +32,6 @@
 			</tr>
 		</c:forEach>
 	</table>	
-	<a href="http://localhost:8181/MyFirstWeb/BoardInsertForm"><button>글쓰기</button></a>
+	<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
 </body>
 </html>
