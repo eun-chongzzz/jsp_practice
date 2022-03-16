@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +33,12 @@
 				<td>${board.hit}</td>
 			</tr>
 		</c:forEach>
-	</table>	
+	</table>
+	<c:if test="${not empty sId}">
 	<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+	</c:if>
+	<c:if test="${sId ne null}">
+	<a href="http://localhost:8181/MyFirstWeb/insertForm.do"><button>글쓰기</button></a>
+	</c:if>	
 </body>
 </html>
