@@ -25,6 +25,7 @@
 <body>
 	<h1>WELCOME!</h1>
 	<h1><%=sId %>님 로그인을 환영합니다.</h1>
+	<a href="http://localhost:8181/MyFirstWeb/boardList.do">게시판 입장하기</a><br>
 	<a href="login_update.jsp">정보수정</a><br>
 	<a href="logout.jsp">로그아웃</a><br><!-- 세션 파기 후 login_form.jsp로 보내주세요.
 	login_form.jsp도 만약 로그인한 사용자가 접근하면 welcome페이지로 보내도록 로직을 살짝 수정해주세요.-->
