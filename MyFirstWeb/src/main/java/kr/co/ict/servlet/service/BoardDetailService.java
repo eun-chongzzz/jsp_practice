@@ -21,7 +21,8 @@ public class BoardDetailService implements IBoardService {
 		boardDAO dao =  boardDAO.getInstance();
 		// dao에서 해당 글번호에 대한 정보를 가져오고
 		boardVO board = dao.getBoardDetail(bNum);
-		System.out.println(board);
+		// System.out.println(board);
+		
 		// 데이터 바인딩
 		request.setAttribute("board", board);
 		

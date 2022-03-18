@@ -25,7 +25,7 @@ public class BoardUpdateFormService implements IBoardService {
 		
 		boardDAO dao =  boardDAO.getInstance();
 
-		boardVO board = dao.getBoardDetail(bNum);
+		boardVO board = dao.getBoardDetail2(bNum);
 
 		request.setAttribute("board", board);
 	}
