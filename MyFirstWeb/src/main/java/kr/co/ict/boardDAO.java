@@ -63,10 +63,11 @@ public class boardDAO {
 		try {
 		// Connection, PreparedStatement, ResultSet을 선언합니다.
 			con = ds.getConnection();
-			int limitNum = (pageNum-1) * 10;
+			int limitNum = (pageNum-1) * 20;
 		
 		// SELECT * FROM userinfo 실행 및 ResultSet에 저장
-		 String sql = "SELECT * FROM boardtbl ORDER BY board_num DESC limit ?, 10";
+		// LIMIT 뒤쪽 숫자가 페이지 당 보여줄 글 개수이므로 DTO의 상수와 함께 고쳐야함.
+		 String sql = "SELECT * FROM boardtbl ORDER BY board_num DESC limit ?, 20";
 		 pstmt = con.prepareStatement(sql);	
 		 pstmt.setInt(1, limitNum);
 		 
@@ -300,7 +301,41 @@ public class boardDAO {
 			}
 		}
 	}
+	
+	
+	// 페이징 처리를 위해 글 전체 개수를 구해오겠습니다.
+	// 하단의 public int getPageNum() 을 작성해주세요.
+	// 쿼리문은 SELECT COUNT(*) FROM boardTbl;
+	public int getPageNum() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int pageNum = 0;
+	
+		try {
+			con = ds.getConnection();
 			
+			String sql = "SELECT COUNT(*) FROM boardTbl"; 
+			pstmt = con.prepareStatement(sql); 
+		
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				pageNum = rs.getInt(1);	
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					con.close();	
+					pstmt.close();
+					rs.close();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return pageNum; 
+		}		
 }
 	
 	
