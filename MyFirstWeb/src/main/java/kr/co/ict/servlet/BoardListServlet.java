@@ -32,10 +32,19 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String strpNum = request.getParameter("pageNum");
+		int pNum = 0;
+		try {
+			pNum = Integer.parseInt(strpNum);
+		} catch(Exception e) {
+			pNum =1;
+		}
+		
+		
 		// 1. 접속시 boardDAO생성
 		boardDAO dao = boardDAO.getInstance();
 		// 2. boardDAO의 getAllBoardList() 호출해 전체 게시물 목록 받아오기
-		List<boardVO> boardList = dao.getAllBoardList();
+		List<boardVO> boardList = dao.getAllBoardList(pNum);
 		// 3. request.setAttribute로 바인딩하기
 		request.setAttribute("boardList", boardList);
 		// 4. /board/boardlist.jsp로 포워딩하기
